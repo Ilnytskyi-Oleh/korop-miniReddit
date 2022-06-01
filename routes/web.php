@@ -16,3 +16,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes(['verify' => true]);
+
+Route::group(['middleware' => ['auth','verified']], function(){
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::group(['namespace' => 'Community','prefix' => 'communities' ],static function(){
+        Route::get('/', IndexController::class)->name('communities.index');
+        Route::get('/create', CreateController::class)->name('communities.create');
+    });
+});
+
+
