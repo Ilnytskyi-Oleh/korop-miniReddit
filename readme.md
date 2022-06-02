@@ -27,6 +27,9 @@ reports
 - Email Verification After Registration 
 - Community Model
 - Topic Model
+- `composer require cviebrock/eloquent-sluggable`
+- Post Model
+- 
 
 
 

@@ -31,6 +31,16 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::delete('/{community}', DeleteController::class)->name('community.delete');
         Route::patch('/{community}', UpdateController::class)->name('community.update');
     });
+
+    Route::group(['namespace' => 'Post','prefix' => 'communities',],static function(){
+        Route::get('/{community}/posts/', IndexController::class)->name('post.index');
+        Route::get('/{community}/posts/create', CreateController::class)->name('post.create');
+        Route::post('/{community}/posts/', StoreController::class)->name('post.store');
+        Route::get('/{community}/posts/{post}', ShowController::class)->name('post.show');
+        Route::get('/{community}/posts/{post}/edit', EditController::class)->name('post.edit');
+        Route::delete('/{community}/posts/{post}', DeleteController::class)->name('post.delete');
+        Route::patch('/{community}/posts/{post}', UpdateController::class)->name('post.update');
+    });
 });
 
 
