@@ -12,4 +12,8 @@ class Community extends Model
     protected $fillable = [
       'name','user_id','description'
     ];
+
+    public function topics(){
+        return $this->belongsToMany(Topic::class);
+    }
 }

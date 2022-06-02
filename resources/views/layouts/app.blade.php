@@ -58,7 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('communities.create') }}">
+                                    <a class="dropdown-item" href="{{ route('community.create') }}">
                                         {{ __('Create Community') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -66,7 +66,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>

@@ -23,8 +23,10 @@ Route::group(['middleware' => ['auth','verified']], function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::group(['namespace' => 'Community','prefix' => 'communities' ],static function(){
-        Route::get('/', IndexController::class)->name('communities.index');
-        Route::get('/create', CreateController::class)->name('communities.create');
+        Route::get('/', IndexController::class)->name('community.index');
+        Route::get('/create', CreateController::class)->name('community.create');
+        Route::post('/', StoreController::class)->name('community.store');
+        Route::get('/{community}', ShowController::class)->name('community.show');
     });
 });
 

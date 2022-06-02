@@ -26,6 +26,7 @@ reports
 - Добавляем "username" в таблицу "users"
 - Email Verification After Registration 
 - Community Model
+- Topic Model
 
 
 
