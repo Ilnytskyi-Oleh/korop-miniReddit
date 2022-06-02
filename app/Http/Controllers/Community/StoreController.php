@@ -10,6 +10,7 @@ class StoreController extends Controller
 {
     public function __invoke(StoreCommunityRequest $request)
     {
+
         $community = Community::create($request->validated() + ['user_id'=> auth()->id()]);
         $community->topics()->attach($request->topics);
 

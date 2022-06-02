@@ -27,6 +27,9 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::get('/create', CreateController::class)->name('community.create');
         Route::post('/', StoreController::class)->name('community.store');
         Route::get('/{community}', ShowController::class)->name('community.show');
+        Route::get('/{community}/edit', EditController::class)->name('community.edit');
+        Route::delete('/{community}', DeleteController::class)->name('community.delete');
+        Route::patch('/{community}', UpdateController::class)->name('community.update');
     });
 });
 
