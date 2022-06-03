@@ -20,6 +20,24 @@
 
                         @endif
                         {{$post->post_text}}
+
+                        @auth
+                            @if($post->user_id == auth()->id())
+                                    <hr/>
+                                <div class="mt-4">
+                                    <a class="btn btn-secondary" href="{{ route('post.edit', [$community, $post]) }}">Edit</a>
+                                    <a href="#"
+                                       onclick="confirm('Точно?!');event.preventDefault();
+                                                document.getElementById('delete-form').submit()"
+                                       class="btn btn-danger">Delete</a>
+                                    <form action="{{ route('post.delete', [$community, $post]) }}" method="POST" id="delete-form">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </div>
+
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>
