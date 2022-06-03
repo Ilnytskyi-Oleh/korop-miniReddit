@@ -25,7 +25,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'title' => 'required',
+            'post_url' => 'url',
         ];
     }
 }
