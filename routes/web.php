@@ -20,8 +20,10 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => ['auth','verified']], function(){
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    //Communities
     Route::group(['namespace' => 'Community','prefix' => 'communities' ],static function(){
         Route::get('/', IndexController::class)->name('community.index');
         Route::get('/create', CreateController::class)->name('community.create');
@@ -32,6 +34,7 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::patch('/{community}', UpdateController::class)->name('community.update');
     });
 
+    //Posts
     Route::group(['namespace' => 'Post','prefix' => 'communities',],static function(){
         Route::get('/{community}/posts/', IndexController::class)->name('post.index');
         Route::get('/{community}/posts/create', CreateController::class)->name('post.create');

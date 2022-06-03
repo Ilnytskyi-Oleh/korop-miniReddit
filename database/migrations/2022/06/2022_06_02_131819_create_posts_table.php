@@ -18,9 +18,9 @@ class CreatePostsTable extends Migration
             $table->foreignId('community_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('title');
-            $table->text('post_text');
-            $table->string('post_image');
-            $table->string('post_url');
+            $table->text('post_text')->nullable();
+            $table->string('post_image')->nullable();
+            $table->string('post_url')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

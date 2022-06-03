@@ -13,8 +13,11 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        <div>
+                            <a class="btn btn-primary" href="{{ route('post.create', $community) }}">Create Post</a>
+                        </div>
 
-                            To do
+
                     </div>
                 </div>
             </div>
