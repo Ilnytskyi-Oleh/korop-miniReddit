@@ -7,6 +7,7 @@ use App\Http\Requests\Post\UpdateRequest;
 use App\Models\Community;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class UpdateController extends Controller
 {
@@ -21,11 +22,17 @@ class UpdateController extends Controller
             $image = $request->file('post_image')->getClientOriginalName();
             $request->file('post_image')->storeAs('posts/' . $post->id, $image);
 
-            if($post->post_image !== '') {
+            if($post->post_image !== '' && $post->post_image !== $image) {
                 unlink(storage_path('app/public/posts/' . $post->id . '/' . $post->post_image));
             }
 
             $post->update(['post_image' => $image]);
+
+            $img = Image::make(storage_path('app/public/posts/' . $post->id . '/'  . $image));
+            $img->resize(300, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save(storage_path('app/public/posts/' . $post->id . '/' . 'prev_' . $image));
         }
 
         return redirect()->route('community.show', [$community, $post])->with('status', 'Post updated');
