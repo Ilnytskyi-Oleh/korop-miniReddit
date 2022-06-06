@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::delete('/{community}/posts/{post}', DeleteController::class)->name('post.delete');
         Route::patch('/{community}/posts/{post}', UpdateController::class)->name('post.update');
     });
+
+    //Votes
+    Route::get('posts/{post}/vote/{vote}', \Post\VoteController::class)->name('post.vote');
 });
 
 

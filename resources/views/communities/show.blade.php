@@ -17,11 +17,19 @@
                             <a class="btn btn-primary" href="{{ route('post.create', $community) }}">Create Post</a>
                         </div>
                             @forelse($posts as $post)
-                            <div class="row mb-3">
+                            <div class="row mb-3 pb-2 border-bottom">
                                 <div class="col-1 text-center">
-                                    <div class=""><i class="fa fa-2x fa-sort-asc" aria-hidden="true"></i></div>
-                                    <h3>0</h3>
-                                    <div><i class="fa fa-2x fa-sort-desc" aria-hidden="true"></i></div>
+                                    <div class="">
+                                        <a href="{{ route('post.vote',[$post, 1]) }}">
+                                            <i class="fa fa-2x fa-sort-asc" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
+                                    <b>{{ $post->votes }}</b>
+                                    <div>
+                                        <a href="{{ route('post.vote',[$post, -1]) }}">
+                                            <i class="fa fa-2x fa-sort-desc" aria-hidden="true"></i>
+                                        </a>
+                                    </div>
                                 </div>
                                 <div class="col-11">
                                     <div class="">
