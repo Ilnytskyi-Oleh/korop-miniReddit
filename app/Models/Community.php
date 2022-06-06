@@ -32,9 +32,9 @@ class Community extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope('user_topics', function (Builder $builder) {
-            $builder->where('user_id', auth()->id());
-        });
+//        static::addGlobalScope('user_topics', function (Builder $builder) {
+//            $builder->where('user_id', auth()->id());
+//        });
     }
 
     public function getRouteKeyName(): string
@@ -46,4 +46,5 @@ class Community extends Model
     {
         return $this->hasMany(Post::class);
     }
+
 }

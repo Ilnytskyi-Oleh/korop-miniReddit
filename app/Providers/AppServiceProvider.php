@@ -26,10 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        View::composer('layouts.app', function($view)
-        {
-            $view->with('newestPosts', Post::with('community')->latest()->take(5)->get());
-            $view->with('newestCommunities', Community::withCount('posts')->latest()->take(5)->get());
-        });
+        View::share('newestPosts', Post::with('community')->latest()->take(5)->get());
+        View::share('newestCommunities', Community::withCount('posts')->latest()->take(5)->get());
     }
 }
