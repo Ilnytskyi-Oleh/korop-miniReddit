@@ -45,6 +45,12 @@ Route::group(['middleware' => ['auth','verified']], function(){
         Route::patch('/{community}/posts/{post}', UpdateController::class)->name('post.update');
     });
 
+    //Comments
+    Route::group(['namespace' => 'Comment','prefix' => 'comments',],static function(){
+
+        Route::post('/{post}/', StoreController::class)->name('comments.store');
+    });
+
     //Votes
     Route::get('posts/{post}/vote/{vote}', \Post\VoteController::class)->name('post.vote');
 });

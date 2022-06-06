@@ -11,6 +11,8 @@ class ShowController extends Controller
 {
     public function __invoke(Community $community, Post $post)
     {
+        $post->load('comments.user');
+
         return view('posts.show', compact('community', 'post'));
     }
 }

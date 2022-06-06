@@ -27,6 +27,30 @@
                         {{$post->post_text}}
 
                         @auth
+                            <hr/>
+                            <h3>Comments</h3>
+                            @forelse($post->comments as $comment)
+                                <div class="my-3 row">
+                                    <div class="col-2">
+                                        {{$comment->user->name}}
+                                        <br>
+                                        {{$comment->created_at->diffForHumans()}}
+                                    </div>
+                                    <div class="col-10">
+                                        {{ $comment->comment_text }}
+                                    </div>
+                                </div>
+                            @empty
+
+                            @endforelse
+                            <div>
+                                Add a comment:
+                            </div>
+                                <form action="{{ route('comments.store',$post) }}" method="POST">
+                                    @csrf
+                                    <textarea class="form-control" name="text" id="" rows="10"></textarea>
+                                    <button class="btn btn-primary mt-2" type="submit">Comment</button>
+                                </form>
                             @if($post->user_id == auth()->id())
                                 <hr/>
                                 <div class="mt-4">
