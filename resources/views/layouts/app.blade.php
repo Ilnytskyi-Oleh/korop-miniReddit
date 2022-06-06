@@ -83,7 +83,42 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        @yield('content')
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Newest posts
+                            </div>
+                            <div class="card-body">
+                                @foreach($newestPosts as $post)
+                                    <a href="{{ route('post.show', [$post->community, $post])}}">{{ $post->title }}</a>
+                                    <div>{{$post->created_at->diffForHumans()}}</div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                Newest communities
+                            </div>
+                            <div class="card-body">
+                                @foreach($newestCommunities as $community)
+                                    <a href="{{ route('community.show', $community)}}">{{ $community->name }}</a>
+                                    ({{ $community->posts_count }} posts)
+                                    <div>{{$community->created_at->diffForHumans()}}</div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
