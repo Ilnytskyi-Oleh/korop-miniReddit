@@ -11,8 +11,15 @@ class ShowController extends Controller
 {
     public function __invoke(Community $community)
     {
+        $query =  $community->posts();
 
-        $posts = $community->posts()->latest('id')->paginate(10);
+        if(\request('sort','') == 'popular') {
+            $query->orderByDesc('votes');
+        } else {
+            $query->latest('id');
+        }
+
+        $posts = $query->paginate(10);
         return view('communities.show', compact('community', 'posts'));
     }
 }

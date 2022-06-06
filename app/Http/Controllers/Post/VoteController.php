@@ -14,7 +14,9 @@ class VoteController extends Controller
     public function __invoke(Post $post, $vote)
     {
 
-        if (!PostVote::where('post_id', $post->id)->where('user_id', auth()->id())->count()) {
+        if (!PostVote::where('post_id', $post->id)->where('user_id', auth()->id())->count()
+
+        && in_array($vote, [-1, 1]) && $post->user_id != auth()->id()) {
 
             PostVote::create([
                 'post_id' => $post->id,
