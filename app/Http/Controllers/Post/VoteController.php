@@ -24,7 +24,6 @@ class VoteController extends Controller
                 'vote' => $vote
             ]);
 
-            $post->increment('votes', $vote);
         }
 
         return redirect()->route('community.show', $post->community);
