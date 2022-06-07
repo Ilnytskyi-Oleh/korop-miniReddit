@@ -36,7 +36,8 @@
 		"laravel/framework": "^8.83.15",
 		"laravel/sanctum": "^2.13",
 		"laravel/tinker": "^2.6",
-		"laravel/ui": "^3.4"
+		"laravel/ui": "^3.4",
+		"livewire/livewire": "^2.10"
 	},
 	"require-dev": {
 		"bamarni/composer-bin-plugin": "^1.4",

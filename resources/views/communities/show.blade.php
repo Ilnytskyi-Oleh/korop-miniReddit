@@ -31,19 +31,8 @@
                         </div>
                             @forelse($posts as $post)
                             <div class="row mb-3 pb-2 border-bottom">
-                                <div class="col-1 text-center">
-                                    <div class="">
-                                        <a href="{{ route('post.vote',[$post, 1]) }}">
-                                            <i class="fa fa-2x fa-sort-asc" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                    <b>{{ $post->votes }}</b>
-                                    <div>
-                                        <a href="{{ route('post.vote',[$post, -1]) }}">
-                                            <i class="fa fa-2x fa-sort-desc" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                @livewire('post-votes', ['post' => $post])
+
                                 <div class="col-11">
                                     <div class="">
                                         <a href="{{route('post.show', [$community, $post])}}">{{ $post->title }}</a>
